@@ -1,5 +1,7 @@
 # 🎡 Sehrli Baraban — 3-sinf matematika
 
+**Muallif:** Mamadaliyeva Xurshidaxon — Jalaquduq tumani 14-maktab boshlang'ich sinf o'qituvchisi. © 2026, barcha huquqlar himoyalangan ([LICENSE.md](LICENSE.md)).
+
 3-sinf o'quvchilari uchun interaktiv sinf o'yini: o'qituvchi barabanni aylantiradi, tasodifiy o'quvchi tanlanadi va unga matematik topshiriq tushadi. Hech qanday server, kutubxona yoki o'rnatish kerak emas — `index.html` ni brauzerda oching.
 
 ## Xususiyatlar

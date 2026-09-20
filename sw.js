@@ -1,5 +1,5 @@
 /* Sehrli Baraban — Service Worker (offline rejim) */
-const CACHE = 'sehrli-baraban-v2.1.0';
+const CACHE = 'sehrli-baraban-v2.1.1';
 const ASSETS = [
     './',
     './index.html',
@@ -23,6 +23,7 @@ const ASSETS = [
     './js/games/timss.js',
     './js/ui.js',
     './js/app.js',
+    './js/protect.js',
     './icons/icon.svg',
     './icons/icon-maskable.svg',
 ];

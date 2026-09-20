@@ -40,7 +40,8 @@
 ## Masterklass
 
 - 45 daqiqalik dars ssenariysi: [docs/masterklass-45-daqiqa.md](docs/masterklass-45-daqiqa.md)
-- Prezentatsiya (14 slayd, PowerPoint): [docs/TIMSS-masterklass.pptx](docs/TIMSS-masterklass.pptx)
+- Prezentatsiya (14 slayd): [docs/TIMSS-masterklass.pptx](docs/TIMSS-masterklass.pptx) / [PDF](docs/TIMSS-masterklass.pdf)
+- Kirish chiptalari (24 ta savol-karta + javoblar varag'i): [docs/kirish-chiptalari.pdf](docs/kirish-chiptalari.pdf)
 
 ## Ishga tushirish
 

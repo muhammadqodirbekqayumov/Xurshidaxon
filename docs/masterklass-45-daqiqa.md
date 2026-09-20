@@ -20,10 +20,18 @@
 4. **Adolatli tanlash** — yoqilgan (hamma navbat bilan chiqadi). **Takrorlanmasin** — yoqing.
 5. Bitta sinov aylantirishi qiling, keyin 🏆 Natijalar → "Natijalarni tozalash".
 6. ⛶ To'liq ekran.
+7. 🎟 **Kirish chiptalari** (`docs/kirish-chiptalari.pdf`): 2–5-sahifalarni chop etib, 24 ta chiptani qirqing. 6-sahifa (javoblar) faqat sizda qolsin. Kichik sovrin (2–3 ta) tayyorlang.
 
 > 💡 Zaxira: internet yo'q bo'lsa ham ilova ishlaydi (fayldan ochiladi). Ovoz kerak emas bo'lsa — o'chiring.
 
 ---
+
+## 0.1 Kutib olish: 🎟 kirish chiptasi (dars boshlanguncha)
+
+Eshikda har o'qituvchiga bittadan chipta beriladi:
+> "Xush kelibsiz! Bu sizning kirish chiptangiz — unda bitta savol bor. O'tirgach yechib, javob va ismingizni yozing. Sohasini hozircha belgilamang — nima ekanini darsda bilib olasiz."
+
+Savollar ataylab o'qituvchi darajasida (Fibonachchi, tovuq-qo'y, yosh masalasi, shokolad sindirish...). Ismlar shu chiptalardan barabanga kiritiladi — bu 2-bosqichga tayyorgarlik.
 
 ## 1. Kirish: "TIMSS nima?" (0–5 daqiqa)
 
@@ -76,6 +84,9 @@ Karta: **TIMSS: Mulohaza**. Masalan, diagramma ("qaysi ikki meva olmaga teng?") 
 
 Har javobdan keyin **yechimni** (ilova ko'rsatadi) ovoz chiqarib o'qing — auditoriya "qanday tushuntirish kerak"ni ko'radi.
 
+**🎟 Chiptaga qaytish (2 daqiqa):** "Endi o'z chiptangizga qarang — savolingiz qaysi sohaga tegishli? Belgilang." 3–4 kishi o'z chiptasini o'qib, sohasini va sababini aytadi. Javoblar varag'idan tekshiring. Odatda Mulohaza savollari xato belgilanadi — shuni ko'rsating: "Ko'rdingizmi, kattalar ham shu yerda qiynaladi."
+
+
 ---
 
 ## 4. Jamoaviy jang (25–35 daqiqa)
@@ -111,10 +122,11 @@ Ishtirokchilar 3–4 kishilik guruhlarda ishlaydi. Har guruhga bittadan oddiy mi
 
 1. 🏆 **Natijalar** bo'limi: rekordlar jadvali, 🌐 **TIMSS — sinf natijasi** kartasi (uch soha bo'yicha foiz). Odatda Mulohaza foizi past chiqadi — buni ko'rsating:
    > "Bu diagramma o'qituvchiga qaysi sohani kuchaytirish kerakligini aytadi."
-2. 📄 **CSV** tugmasi — natijalarni jurnalga/Excelga olish mumkin.
-3. Xulosa:
+2. 🎟 Chiptalar bo'yicha g'oliblar: to'g'ri javob + to'g'ri soha = 2 ball. Eng ko'p ball to'plagan 2–3 kishiga sovrin.
+3. 📄 **CSV** tugmasi — natijalarni jurnalga/Excelga olish mumkin.
+4. Xulosa:
    > "Yodla → tushuntir → qo'lla → tahlil qil → xulosa chiqar. Har darsda kamida bitta Qo'llash va bitta Mulohaza savoli bo'lsin. Ilova buni 2 daqiqada tashkil qiladi."
-4. Uyga vazifa (o'qituvchilarga): o'z mavzusidan 3 ta savol — har sohadan bittadan — tuzib kelish.
+5. Uyga vazifa (o'qituvchilarga): o'z mavzusidan 3 ta savol — har sohadan bittadan — tuzib kelish.
 
 ---
 

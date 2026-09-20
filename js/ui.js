@@ -24,12 +24,13 @@ const UI = {
             soundToggle: $('sound-toggle'), timerSelect: $('timer-select'), globalTimerSelect: $('global-timer-select'), difficultySelect: $('difficulty-select'),
             streakToggle: $('streak-toggle'), projectorToggle: $('projector-toggle'),
             gamesToggleGrid: $('games-toggle-grid'), gamesAllBtn: $('games-all-btn'), gamesNoneBtn: $('games-none-btn'), resetAllBtn: $('reset-all-btn'),
-            themeBtn: $('theme-btn'), fullscreenBtn: $('fullscreen-btn'), settingsBtn: $('settings-btn'),
+            lobbyBtn: $('lobby-btn'), themeBtn: $('theme-btn'), fullscreenBtn: $('fullscreen-btn'), settingsBtn: $('settings-btn'),
             classSelect: $('class-select'), classMenuBtn: $('class-menu-btn'), classList: $('class-list'), classAddBtn: $('class-add-btn'), classCloseBtn: $('class-close-btn'),
             headerClass: $('header-class'), gamesContainer: $('games-container'), appVersion: $('app-version'),
         };
 
         Dialog.init();
+        Lobby.init();
         this.bindEvents();
         this.renderGamesGrid();
         this.refs.appVersion.textContent = 'v' + CONFIG.VERSION;
@@ -187,6 +188,7 @@ const UI = {
             Storage.save(); this.applyTheme(); Wheel.draw();
         });
         r.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+        r.lobbyBtn.addEventListener('click', () => { Sound.ensure(); Lobby.show(); });
         document.addEventListener('fullscreenchange', () => { r.fullscreenBtn.textContent = document.fullscreenElement ? '🗗' : '⛶'; });
 
         // Sinflar
@@ -254,10 +256,11 @@ const UI = {
         const tag = document.activeElement ? document.activeElement.tagName : '';
         const typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
         const gameOpen = !r.gameModal.classList.contains('hidden');
-        const anyModal = gameOpen || !r.settingsModal.classList.contains('hidden') || !r.classModal.classList.contains('hidden') || Dialog.isOpen();
+        const anyModal = gameOpen || !r.settingsModal.classList.contains('hidden') || !r.classModal.classList.contains('hidden') || Dialog.isOpen() || Lobby.isOpen();
 
         if (e.key === 'Escape') {
             if (Dialog.isOpen()) { Dialog._finish(false); return; }
+            if (Lobby.isOpen()) { Lobby.hide(); return; }
             if (gameOpen) this.closeModal(r.gameModal);
             else if (!r.settingsModal.classList.contains('hidden')) this.closeModal(r.settingsModal);
             else if (!r.classModal.classList.contains('hidden')) this.closeModal(r.classModal);
@@ -339,6 +342,7 @@ const UI = {
 
     updateNamesList() {
         const r = this.refs;
+        if (Lobby.isOpen()) Lobby.renderWheel();
         const n = state.students.length;
         r.namesCount.textContent = n;
         r.namesEmpty.classList.toggle('hidden', n > 0);

@@ -32,6 +32,7 @@
 - CSV eksport, JSON zaxira nusxa / tiklash
 
 **Sinf uchun qulayliklar**
+- 🎬 Kutish ekrani: xush kelibsiz, boshlanishgacha hisoblagich, aylanuvchi baraban, isinish savollari va faktlar
 - Proyektor rejimi (katta shrift), to'liq ekran, yorug'/qorong'i mavzu
 - Klaviatura: `Space` — aylantirish, `Esc` — yopish, `1`–`4` — javob tanlash, `Enter` — tekshirish
 - O'qituvchi bonusi (🎁) va rekordlar jadvalida qo'lda ± yulduz
@@ -41,7 +42,8 @@
 
 - 45 daqiqalik dars ssenariysi: [docs/masterklass-45-daqiqa.md](docs/masterklass-45-daqiqa.md)
 - Prezentatsiya (14 slayd): [docs/TIMSS-masterklass.pptx](docs/TIMSS-masterklass.pptx) / [PDF](docs/TIMSS-masterklass.pdf)
-- Kirish chiptalari (24 ta savol-karta + javoblar varag'i): [docs/kirish-chiptalari.pdf](docs/kirish-chiptalari.pdf)
+- Kirish chiptalari, o'qituvchilar uchun (24 ta savol-karta + javoblar): [docs/kirish-chiptalari.pdf](docs/kirish-chiptalari.pdf)
+- Sehrli chiptalar, o'quvchilar uchun (24 ta rangli karta + javoblar): [docs/sehrli-chiptalar-oquvchilar.pdf](docs/sehrli-chiptalar-oquvchilar.pdf)
 
 ## Ishga tushirish
 
@@ -73,6 +75,7 @@ js/games/core.js    o'yinlar registri, natija, taymer, umumiy yordamchilar
 js/games/*.js       o'yinlar (har biri Games.register bilan ro'yxatdan o'tadi)
 js/games/timss.js   TIMSS savollar banki (TIMSS.BANK) va uch soha o'yinlari
 docs/               dars ssenariysi va prezentatsiya
+js/lobby.js         kutish ekrani
 js/ui.js            DOM va hodisalar
 js/app.js           kirish nuqtasi
 sw.js, manifest.json, icons/   PWA

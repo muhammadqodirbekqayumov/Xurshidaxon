@@ -26,7 +26,9 @@
 
 ---
 
-## 0.1 Kutib olish: 🎟 kirish chiptasi (dars boshlanguncha)
+## 0.1 Kutib olish: 🎬 kutish ekrani + 🎟 kirish chiptasi (dars boshlanguncha)
+
+**Kutish ekrani:** ilova sarlavhasidagi 🎬 tugmasini bosing. Proyektorda «Xush kelibsiz! TIMSS masterklass», onangiz ismi, boshlanishgacha hisoblagich (pastda ⏰ boshlash vaqtini kiriting), sekin aylanuvchi baraban, har 30 soniyada yangi isinish savoli (javobi 20 soniyadan keyin chiqadi) va «Bilasizmi?» faktlari ko'rinadi. Kirgan o'qituvchilar ismini ekrandagi maydonga yozing (yoki o'zlari yozsin) — ism darhol barabanga tushadi. Dars boshlanganda **▶ Darsni boshlash** — konfetti bilan Baraban bo'limiga o'tadi. `Esc` — yopish.
 
 Eshikda har o'qituvchiga bittadan chipta beriladi:
 > "Xush kelibsiz! Bu sizning kirish chiptangiz — unda bitta savol bor. O'tirgach yechib, javob va ismingizni yozing. Sohasini hozircha belgilamang — nima ekanini darsda bilib olasiz."
@@ -129,6 +131,10 @@ Ishtirokchilar 3–4 kishilik guruhlarda ishlaydi. Har guruhga bittadan oddiy mi
 5. Uyga vazifa (o'qituvchilarga): o'z mavzusidan 3 ta savol — har sohadan bittadan — tuzib kelish.
 
 ---
+
+## O'quvchilar bilan o'tkazilsa
+
+Xuddi shu ssenariy 3–4-sinf o'quvchilari bilan ham ishlaydi. Kirish chiptasi o'rniga **✨ Sehrli chiptalar** (`docs/sehrli-chiptalar-oquvchilar.pdf`) ishlatiladi: har bolaga hayvon-belgili rangli chipta, topishmoq-savol; baraban bolani tanlaganda avval chiptasidagi javobini aytadi — to'g'ri bo'lsa 🎁 Bonus ⭐. Qiyinlik: **Oson** yoki **Aqlli**.
 
 ## Zaxira rejalar
 

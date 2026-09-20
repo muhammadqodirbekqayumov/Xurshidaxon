@@ -3,7 +3,7 @@
    =================================================== */
 
 const CONFIG = {
-    VERSION: '2.1.1',
+    VERSION: '2.2.0',
     STORAGE_KEY: 'sehrli_baraban_v2',
     LEGACY_KEY: 'sehrli_baraban_data',
     DEFAULT_CLASS: '3-sinf',

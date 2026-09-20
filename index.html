@@ -38,6 +38,7 @@
                 </div>
             </div>
             <div class="header-actions">
+                <button id="lobby-btn" class="icon-btn" title="Kutish ekrani (dars boshlanguncha)">🎬</button>
                 <button id="theme-btn" class="icon-btn" title="Mavzu (yorug'/qorong'i)">🌙</button>
                 <button id="fullscreen-btn" class="icon-btn" title="To'liq ekran">⛶</button>
                 <button id="settings-btn" class="icon-btn" title="Sozlamalar">⚙️</button>
@@ -214,6 +215,58 @@
         </section>
     </div>
 
+    <!-- ====== KUTISH EKRANI (LOBBY) ====== -->
+    <div id="lobby" class="lobby hidden" role="dialog" aria-modal="true" aria-label="Kutish ekrani">
+        <div class="lobby-orb orb-a"></div>
+        <div class="lobby-orb orb-b"></div>
+        <button class="modal-close lobby-close" id="lobby-close" title="Yopish (Esc)">✕</button>
+        <div class="lobby-grid">
+            <div class="lobby-left">
+                <div class="lobby-kicker">👋 Xush kelibsiz!</div>
+                <h2 class="lobby-title" id="lobby-title">TIMSS masterklass</h2>
+                <div class="lobby-sub" id="lobby-sub">Bilish → Qo'llash → Mulohaza</div>
+                <div class="lobby-author">
+                    <span class="lobby-author-icon">👩‍🏫</span>
+                    <span><b>Mamadaliyeva Xurshidaxon</b><br><small>Jalaquduq tumani 14-maktab boshlang'ich sinf o'qituvchisi</small></span>
+                </div>
+                <div class="lobby-countdown">
+                    <span class="lobby-count-label" id="lobby-count-label">Boshlanishiga</span>
+                    <span class="lobby-count" id="lobby-count">--:--</span>
+                </div>
+                <div class="lobby-clock" id="lobby-clock">00:00:00</div>
+            </div>
+            <div class="lobby-right">
+                <div class="lobby-wheel-wrap">
+                    <div class="lobby-wheel" id="lobby-wheel"></div>
+                    <div class="lobby-wheel-center">🎡</div>
+                </div>
+                <div class="lobby-join">
+                    <input type="text" id="lobby-name" placeholder="Ismingizni kiriting va Enter bosing" maxlength="24" autocomplete="off">
+                    <button id="lobby-add" class="btn-add" title="Qo'shish">+</button>
+                </div>
+                <div class="lobby-people" id="lobby-people">0 ishtirokchi</div>
+            </div>
+        </div>
+        <div class="lobby-bottom">
+            <div class="lobby-card">
+                <div class="lobby-card-label">🧠 Isinish savoli <small>(javob 20 soniyadan keyin)</small></div>
+                <div class="lobby-q" id="lobby-q"></div>
+                <div class="lobby-answer hidden" id="lobby-a"></div>
+                <div class="lobby-q-track"><div class="lobby-q-bar" id="lobby-q-bar"></div></div>
+            </div>
+            <div class="lobby-card">
+                <div class="lobby-card-label">💡 Bilasizmi?</div>
+                <div class="lobby-fact" id="lobby-fact"></div>
+            </div>
+        </div>
+        <div class="lobby-tools">
+            <label>⏰ Boshlash vaqti <input type="time" id="lobby-start" class="select-input select-sm"></label>
+            <label>Sarlavha <input type="text" id="lobby-title-input" class="select-input select-sm" maxlength="40"></label>
+            <label>Izoh <input type="text" id="lobby-sub-input" class="select-input select-sm" maxlength="60"></label>
+            <button id="lobby-start-btn" class="btn-glow">▶ Darsni boshlash</button>
+        </div>
+    </div>
+
     <!-- ====== GAME MODAL ====== -->
     <div id="game-modal" class="modal hidden" role="dialog" aria-modal="true">
         <div class="modal-overlay"></div>
@@ -375,6 +428,7 @@
     <script src="js/games/xotira.js"></script>
     <script src="js/games/krestik.js"></script>
     <script src="js/games/timss.js"></script>
+    <script src="js/lobby.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
     <script src="js/protect.js"></script>

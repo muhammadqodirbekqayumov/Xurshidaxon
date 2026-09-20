@@ -1,0 +1,16 @@
+{
+  "name": "Sehrli Baraban — 3-sinf matematika",
+  "short_name": "Sehrli Baraban",
+  "description": "3-sinf o'quvchilari uchun interaktiv matematik o'yinlar va sehrli baraban",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "lang": "uz",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

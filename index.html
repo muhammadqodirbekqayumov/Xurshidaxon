@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="uz" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sehrli Baraban — 3-sinf uchun</title>
-    <meta name="description" content="3-sinf o'quvchilari uchun interaktiv matematik o'yinlar va baraban">
+    <meta name="description" content="3-sinf o'quvchilari uchun interaktiv matematik o'yinlar va sehrli baraban">
+    <meta name="theme-color" content="#0a0a1a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="icons/icon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/games.css">
 </head>
 <body>
     <!-- Confetti overlay -->
     <canvas id="confetti-canvas"></canvas>
+
+    <!-- Toast container -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
     <div id="app">
         <!-- Header -->
         <header class="app-header">
             <div class="header-left">
                 <span class="logo-icon">🎡</span>
-                <h1>Sehrli Baraban</h1>
+                <div>
+                    <h1>Sehrli Baraban</h1>
+                    <div class="header-sub" id="header-class">3-sinf</div>
+                </div>
             </div>
-            <button id="settings-btn" class="icon-btn" title="Sozlamalar">⚙️</button>
+            <div class="header-actions">
+                <button id="theme-btn" class="icon-btn" title="Mavzu (yorug'/qorong'i)">🌙</button>
+                <button id="fullscreen-btn" class="icon-btn" title="To'liq ekran">⛶</button>
+                <button id="settings-btn" class="icon-btn" title="Sozlamalar">⚙️</button>
+            </div>
         </header>
 
         <!-- Navigation Tabs -->
-        <nav class="tab-nav">
-            <button class="tab-btn active" data-tab="baraban">
+        <nav class="tab-nav" role="tablist">
+            <button class="tab-btn active" data-tab="baraban" role="tab">
                 <span class="tab-icon">🎡</span>
                 <span class="tab-label">Baraban</span>
             </button>
-            <button class="tab-btn" data-tab="oyinlar">
+            <button class="tab-btn" data-tab="oyinlar" role="tab">
                 <span class="tab-icon">🎮</span>
                 <span class="tab-label">O'yinlar</span>
             </button>
-            <button class="tab-btn" data-tab="natijalar">
+            <button class="tab-btn" data-tab="natijalar" role="tab">
                 <span class="tab-icon">🏆</span>
                 <span class="tab-label">Natijalar</span>
             </button>
         </nav>
 
         <!-- ====== TAB: BARABAN ====== -->
-        <main id="tab-baraban" class="tab-content active">
+        <section id="tab-baraban" class="tab-content active">
             <div class="baraban-layout">
                 <!-- Wheel Section -->
                 <div class="wheel-section">
@@ -54,15 +69,27 @@
                         <span class="spin-text">AYLANTIR!</span>
                         <span class="spin-sub">Avval ismlarni kiriting</span>
                     </button>
+                    <div class="wheel-hint">Bo'sh joy (Space) — aylantirish · Esc — yopish · 1-4 — javob tanlash</div>
                 </div>
 
                 <!-- Names Panel -->
                 <div class="names-section">
                     <div class="card">
-                        <h3>📋 O'quvchilar</h3>
+                        <div class="card-head">
+                            <h3>📋 O'quvchilar <span id="names-count" class="count-badge">0</span></h3>
+                            <div class="class-switch">
+                                <select id="class-select" class="select-input select-sm" title="Sinfni tanlash"></select>
+                                <button id="class-menu-btn" class="btn-icon-sm" title="Sinflarni boshqarish">⋯</button>
+                            </div>
+                        </div>
                         <div class="input-group">
-                            <input type="text" id="name-input" placeholder="Ism kiriting..." autocomplete="off" maxlength="20">
+                            <input type="text" id="name-input" placeholder="Ism kiriting..." autocomplete="off" maxlength="24">
                             <button id="add-name-btn" class="btn-add" title="Qo'shish">+</button>
+                        </div>
+                        <div class="names-tools">
+                            <button id="import-names-btn" class="btn-sm btn-secondary" title="Ro'yxatni birdaniga qo'shish">📥 Ro'yxat</button>
+                            <button id="sort-names-btn" class="btn-sm btn-secondary" title="Alifbo bo'yicha saralash">🔤 A-Z</button>
+                            <button id="shuffle-names-btn" class="btn-sm btn-secondary" title="Aralashtirish">🔀</button>
                         </div>
                         <div id="names-empty" class="empty-state">
                             <span class="empty-icon">👋</span>
@@ -70,13 +97,22 @@
                         </div>
                         <ul id="names-list" class="names-list"></ul>
                         <div id="names-actions" class="names-actions hidden">
-                            <label class="toggle-label">
-                                <span class="toggle-wrap">
-                                    <input type="checkbox" id="no-repeat-toggle">
-                                    <span class="toggle-slider"></span>
-                                </span>
-                                <span>Takrorlanmasin</span>
-                            </label>
+                            <div class="toggles-col">
+                                <label class="toggle-label" title="Bir marta chiqqan ism qayta chiqmaydi">
+                                    <span class="toggle-wrap">
+                                        <input type="checkbox" id="no-repeat-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </span>
+                                    <span>Takrorlanmasin</span>
+                                </label>
+                                <label class="toggle-label" title="Kam chiqqan o'quvchilar ko'proq chiqadi">
+                                    <span class="toggle-wrap">
+                                        <input type="checkbox" id="fair-pick-toggle">
+                                        <span class="toggle-slider"></span>
+                                    </span>
+                                    <span>Adolatli tanlash</span>
+                                </label>
+                            </div>
                             <button id="clear-names-btn" class="btn-sm btn-danger">🗑 Tozalash</button>
                         </div>
                     </div>
@@ -104,96 +140,115 @@
                                 <span class="team-name">Ko'k</span>
                                 <span class="team-score" id="blue-score">0</span>
                             </div>
-                            <button id="reshuffle-teams-btn" class="btn-sm btn-secondary">🔀 Qayta aralashtirish</button>
+                            <div class="team-actions">
+                                <button id="reshuffle-teams-btn" class="btn-sm btn-secondary">🔀 Qayta aralashtirish</button>
+                                <button id="reset-teams-btn" class="btn-sm btn-secondary">0:0</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+        </section>
 
         <!-- ====== TAB: O'YINLAR ====== -->
-        <main id="tab-oyinlar" class="tab-content">
+        <section id="tab-oyinlar" class="tab-content">
             <p class="tab-intro">O'yinni tanlang yoki barabanni aylantiring — o'yin avtomatik tushadi!</p>
-            <div class="games-grid">
-                <button class="game-card" data-game="bomba">
-                    <span class="game-icon">💣</span>
-                    <span class="game-name">Bomba!</span>
-                    <span class="game-desc">Vaqt tugagunicha yech!</span>
-                </button>
-                <button class="game-card" data-game="tezkor">
-                    <span class="game-icon">⚡</span>
-                    <span class="game-name">Tezkor Hisob</span>
-                    <span class="game-desc">To'g'ri javobni tanlang</span>
-                </button>
-                <button class="game-card" data-game="sirli">
-                    <span class="game-icon">🔍</span>
-                    <span class="game-name">Sirli Son</span>
-                    <span class="game-desc">Boshqacha sonni top!</span>
-                </button>
-                <button class="game-card" data-game="tarozi">
-                    <span class="game-icon">⚖️</span>
-                    <span class="game-name">Tarozi</span>
-                    <span class="game-desc">Katta, kichik yoki teng?</span>
-                </button>
-                <button class="game-card" data-game="ketma">
-                    <span class="game-icon">🔢</span>
-                    <span class="game-name">Ketma-ketlik</span>
-                    <span class="game-desc">Keyingi sonni top!</span>
-                </button>
-                <button class="game-card" data-game="hayo">
-                    <span class="game-icon">🧠</span>
-                    <span class="game-name">Ha yoki Yo'q</span>
-                    <span class="game-desc">To'g'rimi yoki noto'g'ri?</span>
-                </button>
-            </div>
-        </main>
+            <div id="games-container"></div>
+        </section>
 
         <!-- ====== TAB: NATIJALAR ====== -->
-        <main id="tab-natijalar" class="tab-content">
-            <div class="card">
-                <h3>🏆 Rekorlar Jadvali</h3>
-                <div id="leaderboard-empty" class="empty-state">
-                    <span class="empty-icon">📊</span>
-                    <p>Hali hech kim ball to'plamadi!</p>
+        <section id="tab-natijalar" class="tab-content">
+            <div class="results-layout">
+                <div class="card">
+                    <div class="card-head">
+                        <h3>🏆 Rekordlar Jadvali</h3>
+                        <div class="card-tools">
+                            <button id="export-csv-btn" class="btn-sm btn-secondary" title="CSV yuklab olish">📄 CSV</button>
+                        </div>
+                    </div>
+                    <div id="class-summary" class="class-summary hidden"></div>
+                    <div id="leaderboard-empty" class="empty-state">
+                        <span class="empty-icon">📊</span>
+                        <p>Hali hech kim ball to'plamadi!</p>
+                    </div>
+                    <div id="leaderboard" class="leaderboard"></div>
+                    <div class="results-actions">
+                        <button id="reset-scores-btn" class="btn-sm btn-danger hidden">🗑 Natijalarni tozalash</button>
+                    </div>
                 </div>
-                <div id="leaderboard" class="leaderboard"></div>
-                <button id="reset-scores-btn" class="btn-sm btn-danger hidden">🗑 Natijalarni tozalash</button>
+
+                <div class="card">
+                    <div class="card-head">
+                        <h3>📝 Bugungi jurnal</h3>
+                        <button id="clear-log-btn" class="btn-sm btn-secondary">Tozalash</button>
+                    </div>
+                    <div id="log-empty" class="empty-state">
+                        <span class="empty-icon">🕒</span>
+                        <p>Hali o'yin o'ynalmadi</p>
+                    </div>
+                    <ul id="game-log" class="game-log"></ul>
+                </div>
+
+                <div class="card hidden" id="timss-card">
+                    <h3>🌐 TIMSS — sinf natijasi</h3>
+                    <p class="muted-text">Uch kognitiv soha bo'yicha to'g'ri javoblar ulushi</p>
+                    <div id="timss-summary" class="timss-summary"></div>
+                </div>
+
+                <div class="card">
+                    <h3>💾 Zaxira nusxa</h3>
+                    <p class="muted-text">Barcha sinflar, ballar va sozlamalarni faylga saqlang yoki boshqa kompyuterga ko'chiring.</p>
+                    <div class="card-tools">
+                        <button id="export-json-btn" class="btn-sm btn-secondary">⬇️ Saqlash (JSON)</button>
+                        <button id="import-json-btn" class="btn-sm btn-secondary">⬆️ Yuklash (JSON)</button>
+                        <input type="file" id="import-json-file" accept="application/json,.json" class="hidden">
+                    </div>
+                </div>
             </div>
-        </main>
+        </section>
     </div>
 
     <!-- ====== GAME MODAL ====== -->
-    <div id="game-modal" class="modal hidden">
+    <div id="game-modal" class="modal hidden" role="dialog" aria-modal="true">
         <div class="modal-overlay"></div>
-        <div class="modal-dialog">
-            <button class="modal-close" id="modal-close-btn">✕</button>
+        <div class="modal-dialog modal-game">
+            <button class="modal-close" id="modal-close-btn" title="Yopish (Esc)">✕</button>
 
             <!-- Winner announcement -->
             <div id="winner-section" class="winner-section">
                 <div class="winner-stars">⭐</div>
                 <div class="winner-label">Tanlandi!</div>
                 <div id="winner-name" class="winner-name"></div>
-                <div id="winner-team-badge" class="winner-team-badge hidden"></div>
+                <div class="winner-meta">
+                    <span id="winner-team-badge" class="winner-team-badge hidden"></span>
+                    <span id="winner-level-badge" class="winner-level-badge hidden"></span>
+                    <span id="winner-streak-badge" class="winner-streak-badge hidden"></span>
+                </div>
             </div>
+
+            <div id="game-title" class="game-title"></div>
 
             <!-- Game area -->
             <div id="game-area" class="game-area"></div>
 
             <!-- Result feedback -->
             <div id="game-result" class="game-result hidden"></div>
+            <div id="game-hint" class="game-hint hidden"></div>
 
             <!-- Actions -->
             <div class="modal-actions">
-                <button id="next-game-btn" class="btn-primary hidden">🎮 Yangi savol</button>
+                <button id="bonus-star-btn" class="btn-secondary btn-sm" title="O'qituvchi bonusi">🎁 Bonus ⭐</button>
+                <button id="retry-game-btn" class="btn-secondary hidden">🔁 Yana shu o'yin</button>
+                <button id="next-game-btn" class="btn-primary hidden">🎮 Boshqa o'yin</button>
                 <button id="spin-again-btn" class="btn-glow hidden">🎡 Yana aylantirish</button>
             </div>
         </div>
     </div>
 
     <!-- ====== SETTINGS MODAL ====== -->
-    <div id="settings-modal" class="modal hidden">
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true">
         <div class="modal-overlay"></div>
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-md">
             <button class="modal-close" id="settings-close-btn">✕</button>
             <h2 class="modal-title">⚙️ Sozlamalar</h2>
 
@@ -207,25 +262,114 @@
                 </label>
             </div>
             <div class="setting-row">
-                <label>⏱ Bomba taymeri</label>
-                <select id="timer-select" class="select-input">
-                    <option value="10">10 soniya</option>
-                    <option value="15" selected>15 soniya</option>
-                    <option value="20">20 soniya</option>
-                    <option value="30">30 soniya</option>
-                </select>
-            </div>
-            <div class="setting-row">
                 <label>📊 Qiyinlik</label>
                 <select id="difficulty-select" class="select-input">
+                    <option value="auto">🧠 Aqlli (har bir o'quvchiga mos)</option>
                     <option value="easy">Oson</option>
                     <option value="medium" selected>O'rtacha</option>
                     <option value="hard">Qiyin</option>
                 </select>
             </div>
+            <div class="setting-row">
+                <label>💣 Bomba taymeri</label>
+                <select id="timer-select" class="select-input">
+                    <option value="10">10 soniya</option>
+                    <option value="15" selected>15 soniya</option>
+                    <option value="20">20 soniya</option>
+                    <option value="30">30 soniya</option>
+                    <option value="45">45 soniya</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <label>⏱ Barcha o'yinlarda taymer</label>
+                <select id="global-timer-select" class="select-input">
+                    <option value="0" selected>O'chiq</option>
+                    <option value="15">15 soniya</option>
+                    <option value="30">30 soniya</option>
+                    <option value="45">45 soniya</option>
+                    <option value="60">60 soniya</option>
+                </select>
+            </div>
+            <div class="setting-row">
+                <label>🔥 Seriya bonusi (3 ta ketma-ket = +1 ⭐)</label>
+                <label class="toggle-label">
+                    <span class="toggle-wrap">
+                        <input type="checkbox" id="streak-toggle" checked>
+                        <span class="toggle-slider"></span>
+                    </span>
+                </label>
+            </div>
+            <div class="setting-row">
+                <label>📺 Proyektor rejimi (katta shrift)</label>
+                <label class="toggle-label">
+                    <span class="toggle-wrap">
+                        <input type="checkbox" id="projector-toggle">
+                        <span class="toggle-slider"></span>
+                    </span>
+                </label>
+            </div>
+            <div class="setting-block">
+                <div class="setting-block-head">
+                    <label>🎮 Barabanda tushadigan o'yinlar</label>
+                    <div>
+                        <button id="games-all-btn" class="btn-link">Hammasi</button>
+                        <button id="games-none-btn" class="btn-link">Hech biri</button>
+                    </div>
+                </div>
+                <div id="games-toggle-grid" class="games-toggle-grid"></div>
+            </div>
+            <div class="setting-footer">
+                <span class="muted-text">Sehrli Baraban <span id="app-version"></span></span>
+                <button id="reset-all-btn" class="btn-sm btn-danger">Hammasini o'chirish</button>
+            </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ====== DIALOG (confirm / prompt / textarea) ====== -->
+    <div id="dialog-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog modal-sm">
+            <h2 class="modal-title" id="dialog-title"></h2>
+            <p class="dialog-message" id="dialog-message"></p>
+            <input type="text" id="dialog-input" class="dialog-input hidden" autocomplete="off" maxlength="30">
+            <textarea id="dialog-textarea" class="dialog-textarea hidden" rows="7"></textarea>
+            <div class="modal-actions">
+                <button id="dialog-cancel" class="btn-secondary">Bekor qilish</button>
+                <button id="dialog-ok" class="btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== CLASS MENU MODAL ====== -->
+    <div id="class-modal" class="modal hidden" role="dialog" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-dialog modal-sm">
+            <button class="modal-close" id="class-close-btn">✕</button>
+            <h2 class="modal-title">🏫 Sinflar</h2>
+            <ul id="class-list" class="class-list"></ul>
+            <div class="modal-actions">
+                <button id="class-add-btn" class="btn-primary">➕ Yangi sinf</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts (order matters) -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/sound.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/mathgen.js"></script>
+    <script src="js/stats.js"></script>
+    <script src="js/wheel.js"></script>
+    <script src="js/games/core.js"></script>
+    <script src="js/games/arithmetic.js"></script>
+    <script src="js/games/logic.js"></script>
+    <script src="js/games/world.js"></script>
+    <script src="js/games/xotira.js"></script>
+    <script src="js/games/krestik.js"></script>
+    <script src="js/games/timss.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
